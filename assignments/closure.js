@@ -4,6 +4,29 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+//global
+const currency = "gold";
+
+console.log(`The global currency is ${currency}.`);
+
+function wakandagea() {
+  let countryCurrency = "dollar";
+
+  console.log(`The ${currency} of WakandaGea is ${countryCurrency}!`);
+
+  function archKansas(stateCurrency) {
+
+    console.log(`The ${currency} of Arch-Kansas is not ${countryCurrency}, but ${stateCurrency}!`);
+
+    function dimmsDale(townCurrency) {
+
+      console.log(`The ${currency} of Dimmsdale is neither ${countryCurrency} nor ${stateCurrency}, but the one and only ${townCurrency.toUpperCase()}!!!`);
+    } //This closes the town
+    dimmsDale("DimmaDollar");
+  }
+  archKansas("Freedom Unit");
+}
+wakandagea();
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
