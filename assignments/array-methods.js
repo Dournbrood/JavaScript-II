@@ -58,28 +58,78 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+
+runners.forEach(function (currentValue, index) {
+  fullNames.push(`${currentValue.first_name} ${currentValue.last_name}`);
+});
+
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
 let firstNamesAllCaps = [];
+
+firstNamesAllCaps = runners.map(function (currentValue, index) {
+  return currentValue.first_name.toUpperCase();
+});
+
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
 let runnersLargeSizeShirt = [];
+
+runnersLargeSizeShirt = runners.filter(function (currentValue, index) {
+  return currentValue.shirt_size === "L";
+});
+
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
+
+ticketPriceTotal = runners.reduce(function (accum, currentValue) {
+  return accum + currentValue.donation;
+}, 0);
+
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// The event was sponsored by multiple companies. WordTune withdrew their sponsorship after the event's conclusion. Sum up the donations from WordTune employees so the funds can be rerouted and pay dividends elsewhere.
+let wordTuneDonations = 0;
+
+wordTuneDonations = runners.filter(function (currentValue, index) {
+  return currentValue.company_name === "Wordtune";
+}).reduce(function (accum, currentValue) {
+  return accum + currentValue.donation;
+}, 0);
+
+console.log(wordTuneDonations);
 
 // Problem 2
+// A potential supplier is requesting the above shirt size data to be sent to them for review. Problem is, their systems can only interpret lowercase alphanumeric characters. 
+
+let shirtSizesLower = [];
+
+shirtSizesLower = runners.map(function (currentValue, index) {
+  return currentValue.shirt_size.toLowerCase();
+});
+
+console.log(shirtSizesLower);
 
 // Problem 3
+// The event's coordinators would like to create a 'donor titan' board for display next year. Showboaters. Return the names of all individuals that donated 200.00USD or more.
+
+let donorTitans = [];
+
+donorTitans = runners.filter(function (currentValue) {
+  return currentValue.donation > 200;
+}).map(function (currentValue) {
+  return currentValue.first_name;
+});
+
+console.log(donorTitans);
